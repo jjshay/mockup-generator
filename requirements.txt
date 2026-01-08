@@ -1,0 +1,9 @@
+# Mockup Generator - Requirements
+
+# Core - Required
+Pillow>=10.0.0              # Image processing
+
+# Optional - For advanced features
+requests>=2.31.0            # API calls
+python-dotenv>=1.0.0        # Environment variables
+numpy>=1.24.0               # Image math

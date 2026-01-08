@@ -1,0 +1,24 @@
+# Outputs
+demo_output/
+output/
+mockups/
+
+# Credentials
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Large files
+*.psd
+templates/
