@@ -11,7 +11,7 @@
 
 **Create professional product mockups automatically - place artwork into frame templates.**
 
-![Demo](demo.gif)
+![Demo Screenshot](assets/demo.png)
 
 ---
 
