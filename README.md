@@ -11,7 +11,9 @@
 
 **Create professional product mockups automatically - place artwork into frame templates.**
 
-[![Demo](https://asciinema.org/a/Bh90HuA7msTkTxiE.svg)](https://asciinema.org/a/Bh90HuA7msTkTxiE)
+[![Demo](https://asciinema.org/a/rLVozlHxTjxVVPad.svg)](https://asciinema.org/a/rLVozlHxTjxVVPad)
+
+[![Watch Demo](https://img.shields.io/badge/▶%20Watch%20Demo-Click%20to%20Play-red?style=for-the-badge&logo=asciinema)](https://asciinema.org/a/rLVozlHxTjxVVPad)
 
 ---
 
