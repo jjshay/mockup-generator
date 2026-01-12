@@ -11,7 +11,7 @@
 
 **Create professional product mockups automatically - place artwork into frame templates.**
 
-![Demo Screenshot](assets/demo.png)
+[![Demo](https://asciinema.org/a/Bh90HuA7msTkTxiE.svg)](https://asciinema.org/a/Bh90HuA7msTkTxiE)
 
 ---
 
