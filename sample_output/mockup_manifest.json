@@ -1,0 +1,44 @@
+{
+  "input": {
+    "artwork_file": "abstract_art_001.jpg",
+    "dimensions": [800, 1000]
+  },
+  "processing": {
+    "frame_style": "black_metal",
+    "frame_width_px": 30,
+    "mat_width_px": 40,
+    "framed_dimensions": [940, 1140]
+  },
+  "room_scene": {
+    "type": "living_room",
+    "wall_color": "#F5F2EF",
+    "floor_type": "hardwood",
+    "lighting": "soft_even",
+    "decorative_elements": ["plant", "minimal_furniture"]
+  },
+  "compositing": {
+    "artwork_position": "center_upper_third",
+    "shadow_blur_px": 15,
+    "shadow_opacity": 0.5,
+    "perspective_correction": false
+  },
+  "outputs": {
+    "frame_variations": [
+      {"style": "black_metal", "file": "mockup_black_metal.jpg"},
+      {"style": "white_wood", "file": "mockup_white_wood.jpg"},
+      {"style": "gold_ornate", "file": "mockup_gold_ornate.jpg"},
+      {"style": "natural_oak", "file": "mockup_natural_oak.jpg"}
+    ],
+    "size_exports": [
+      {"name": "square_1200", "dimensions": [1200, 1200], "use_case": "Instagram, eBay"},
+      {"name": "landscape_1600x1200", "dimensions": [1600, 1200], "use_case": "Website, Etsy"},
+      {"name": "hero_1920x1080", "dimensions": [1920, 1080], "use_case": "Hero banner"},
+      {"name": "thumbnail_800", "dimensions": [800, 800], "use_case": "Thumbnails"}
+    ],
+    "total_files_generated": 16
+  },
+  "metadata": {
+    "processing_time_seconds": 2.3,
+    "timestamp": "2025-01-10T15:45:22Z"
+  }
+}
