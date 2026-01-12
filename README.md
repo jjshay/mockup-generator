@@ -1,5 +1,10 @@
 # Mockup Generator
 
+![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Pillow](https://img.shields.io/badge/Pillow-enabled-brightgreen.svg)
+![PhotoRoom](https://img.shields.io/badge/PhotoRoom-optional-lightgrey.svg)
+
 **Create professional product mockups automatically - place artwork into frame templates.**
 
 ---
@@ -17,18 +22,30 @@ Takes your artwork image and automatically:
 
 ---
 
-## Quick Demo
+## Quick Start
 
 ```bash
+# Clone the repo
+git clone https://github.com/jjshay/mockup-generator.git
+cd mockup-generator
+
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the demo (creates sample mockups)
+# Run the interactive demo
 python demo.py
 
-# See your mockups
-open demo_output/
+# Or run the visual showcase
+python showcase.py
+
+# Generate mockup with sample artwork
+python mockup_generator.py examples/sample_artwork.jpg --output output/
 ```
+
+### Sample Files
+- `examples/sample_artwork.jpg` - Sample artwork image
+- `examples/mockup_config.json` - Configuration options
+- `sample_output/mockup_manifest.json` - Example output manifest
 
 ---
 

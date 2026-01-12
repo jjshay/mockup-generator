@@ -1,0 +1,48 @@
+{
+  "input": {
+    "artwork_file": "examples/sample_artwork.jpg",
+    "artwork_type": "print"
+  },
+  "frame_options": {
+    "styles": ["black_metal", "white_wood", "gold_ornate", "natural_oak"],
+    "default_style": "black_metal",
+    "frame_width_px": 30,
+    "mat_width_px": 40,
+    "mat_color": "#FAFAFA"
+  },
+  "room_scenes": [
+    {
+      "name": "living_room",
+      "wall_color": "#F5F2EF",
+      "floor_type": "hardwood",
+      "lighting": "soft_natural",
+      "decorations": ["plant", "minimal_furniture"]
+    },
+    {
+      "name": "office",
+      "wall_color": "#E8E8E8",
+      "floor_type": "carpet",
+      "lighting": "bright",
+      "decorations": ["desk", "lamp"]
+    },
+    {
+      "name": "gallery",
+      "wall_color": "#FFFFFF",
+      "floor_type": "concrete",
+      "lighting": "spotlight",
+      "decorations": []
+    }
+  ],
+  "export_sizes": [
+    {"name": "instagram_square", "dimensions": [1200, 1200]},
+    {"name": "ebay_landscape", "dimensions": [1600, 1200]},
+    {"name": "hero_banner", "dimensions": [1920, 1080]},
+    {"name": "thumbnail", "dimensions": [800, 800]}
+  ],
+  "output": {
+    "directory": "output/",
+    "format": "jpg",
+    "quality": 95,
+    "naming_pattern": "mockup_{frame_style}_{size}.jpg"
+  }
+}
