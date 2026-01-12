@@ -1,6 +1,9 @@
 # Mockup Generator
 
 ![CI](https://github.com/jjshay/mockup-generator/workflows/CI/badge.svg)
+![CodeQL](https://github.com/jjshay/mockup-generator/workflows/CodeQL/badge.svg)
+[![codecov](https://codecov.io/gh/jjshay/mockup-generator/branch/main/graph/badge.svg)](https://codecov.io/gh/jjshay/mockup-generator)
+![Release](https://img.shields.io/github/v/release/jjshay/mockup-generator)
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Pillow](https://img.shields.io/badge/Pillow-enabled-brightgreen.svg)
