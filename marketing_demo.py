@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Marketing Demo - Mockup Generator"""
+"""Mockup Generator - Marketing Demo"""
 import time
 import sys
 
@@ -7,123 +7,159 @@ try:
     from rich.console import Console
     from rich.panel import Panel
     from rich.table import Table
+    from rich.align import Align
     from rich import box
-    console = Console()
 except ImportError:
     print("Run: pip install rich")
     sys.exit(1)
 
-def pause(seconds=2):
-    time.sleep(seconds)
+console = Console()
 
-def clear():
-    console.clear()
+def pause(s=1.5):
+    time.sleep(s)
 
-# SCENE 1: Hook
-clear()
-console.print("\n" * 5)
-console.print("[bold yellow]        SELLING ART WITHOUT LIFESTYLE PHOTOS?[/bold yellow]", justify="center")
-pause(2)
-
-# SCENE 2: Problem
-clear()
-console.print("\n" * 3)
-console.print(Panel("""
-[bold red]BUYERS CAN'T VISUALIZE:[/bold red]
-
-   • Flat product shots bore them
-   • "How will it look in MY home?"
-   • No frame reference
-   • Competitors have better photos
-
-[dim]Lifestyle mockups = 3x more sales.[/dim]
-""", title="❌ Boring Photos Don't Sell", border_style="red", width=60), justify="center")
-pause(3)
-
-# SCENE 3: Solution
-clear()
-console.print("\n" * 3)
-console.print(Panel("""
-[bold green]INSTANT LIFESTYLE MOCKUPS:[/bold green]
-
-   ✓ Drop in your artwork
-   ✓ Auto-frames in 4 styles
-   ✓ Places in room scenes
-   ✓ Export-ready for eBay
-
-[bold]Professional mockups in 10 seconds.[/bold]
-""", title="✅ Mockup Generator", border_style="green", width=60), justify="center")
-pause(3)
-
-# SCENE 4: Demo
-clear()
-console.print("\n\n")
-console.print("[bold cyan]              🎨 DROP YOUR ARTWORK[/bold cyan]", justify="center")
-console.print()
-pause(1)
-
-console.print("[bold white]                 abstract-art.jpg[/bold white]", justify="center")
-pause(2)
-
-# SCENE 5: Generating
-clear()
-console.print("\n\n")
-console.print("[bold magenta]              ⚡ GENERATING MOCKUPS...[/bold magenta]", justify="center")
-console.print()
-
-frames = ["Black Metal", "White Wood", "Gold Ornate", "Natural Oak"]
-for frame in frames:
-    console.print(f"[dim]                Creating {frame} frame...[/dim]", justify="center")
+def step(text):
+    console.print(f"\n[bold white on #1a1a2e]  {text}  [/]\n")
     pause(0.8)
 
-pause(1)
-
-# SCENE 6: Results
-clear()
-console.print("\n\n")
-console.print("[bold green]              ✅ 4 MOCKUPS READY![/bold green]", justify="center")
+# INTRO
+console.clear()
 console.print()
-
-table = Table(box=box.ROUNDED, width=55)
-table.add_column("File", style="cyan")
-table.add_column("Frame Style", style="gold1")
-table.add_column("Size", style="dim")
-
-mockups = [
-    ("mockup_black_metal.jpg", "Modern Minimal", "1600x1200"),
-    ("mockup_white_wood.jpg", "Light & Airy", "1600x1200"),
-    ("mockup_gold_ornate.jpg", "Classical", "1600x1200"),
-    ("mockup_natural_oak.jpg", "Rustic Warm", "1600x1200"),
-]
-
-for f, style, size in mockups:
-    table.add_row(f, style, size)
-
-console.print(table, justify="center")
+intro = Panel(
+    Align.center("[bold yellow]MOCKUP GENERATOR[/]\n\n[white]Professional Product Mockups in Seconds[/]"),
+    border_style="cyan",
+    width=60,
+    padding=(1, 2)
+)
+console.print(intro)
 pause(2)
 
-# SCENE 7: Before/After
-clear()
-console.print("\n\n")
-console.print("[bold yellow]              📸 THE DIFFERENCE[/bold yellow]", justify="center")
-console.print()
+# STEP 1
+step("STEP 1: LOAD ARTWORK")
 
-console.print(Panel("""
-[red]BEFORE:[/red]  Flat artwork image
+console.print("[dim]$[/] python mockup_generator.py [cyan]./artwork/abstract_painting.jpg[/]\n")
+pause(1)
 
-[green]AFTER:[/green]   Framed art in beautiful room
-          → Buyers can VISUALIZE owning it
-          → Looks professional
-          → Stands out in search results
-""", border_style="cyan", width=50), justify="center")
-pause(3)
+console.print("  Loading artwork..........", end="")
+pause(0.5)
+console.print(" [green]3000x2400 pixels[/]")
 
-# SCENE 8: CTA
-clear()
-console.print("\n" * 4)
-console.print("[bold yellow]           ⭐ MOCKUPS THAT SELL ⭐[/bold yellow]", justify="center")
+console.print("  Analyzing dimensions.....", end="")
+pause(0.4)
+console.print(" [green]Landscape 5:4[/]")
+
+console.print("  Detecting edges..........", end="")
+pause(0.4)
+console.print(" [green]Clean borders[/]")
+
+pause(0.8)
+
+artwork = Panel(
+    "[bold]abstract_painting.jpg[/]\n\n"
+    "[dim]Dimensions:[/]  3000 x 2400\n"
+    "[dim]Aspect:[/]      5:4 Landscape\n"
+    "[dim]Style:[/]       Abstract / Contemporary",
+    title="[cyan]Artwork Loaded[/]",
+    border_style="cyan",
+    width=45
+)
+console.print(artwork)
+pause(1.5)
+
+# STEP 2
+step("STEP 2: SELECT FRAME STYLES")
+
+frames = Table(box=box.SIMPLE, width=50)
+frames.add_column("Style", style="white")
+frames.add_column("Best For", style="dim")
+frames.add_column("", justify="center")
+
+frames.add_row("Black Metal", "Modern, minimalist", "[green]Selected[/]")
+frames.add_row("White Wood", "Light, airy pieces", "[green]Selected[/]")
+frames.add_row("Natural Oak", "Rustic themes", "[green]Selected[/]")
+frames.add_row("Floating", "Gallery look", "[green]Selected[/]")
+
+console.print(frames)
+console.print("\n  [cyan]4 frame styles selected[/]")
+pause(1.5)
+
+# STEP 3
+step("STEP 3: SELECT ROOM SCENES")
+
+rooms = [
+    ("Living Room", "Cozy home setting"),
+    ("Modern Office", "Professional workspace"),
+    ("Gallery Wall", "White gallery backdrop"),
+    ("Minimal", "Plain wall background"),
+]
+
+for room, desc in rooms:
+    console.print(f"  [green]>[/] [bold]{room}[/] - [dim]{desc}[/]")
+    pause(0.15)
+
+console.print("\n  [cyan]4 room scenes selected[/]")
+pause(1)
+
+# STEP 4
+step("STEP 4: GENERATING MOCKUPS (4 x 4 = 16)")
+
+console.print("  Rendering mockups...\n")
+pause(0.5)
+
+# Progress bar
+for i in range(0, 101, 5):
+    bar_len = int(i / 100 * 35)
+    bar = "[green]" + "█" * bar_len + "[/][dim]" + "░" * (35 - bar_len) + "[/]"
+    console.print(f"\r  {bar} [cyan]{i}%[/]    ", end="")
+    time.sleep(0.08)
+
+console.print("\n\n  [green]16 mockups generated[/]")
+pause(1)
+
+# STEP 5
+step("STEP 5: EXPORT SIZES")
+
+sizes = [
+    ("1200x1200", "Instagram, Etsy"),
+    ("1600x1200", "eBay, product page"),
+    ("1920x1080", "Website banner"),
+    ("800x800", "Thumbnail, email"),
+]
+
+for size, use in sizes:
+    console.print(f"  [green]>[/] {size} - [dim]{use}[/]")
+    pause(0.2)
+
+console.print(f"\n  [bold]Total:[/] 16 mockups x 4 sizes = [cyan]64 images[/]")
+pause(1.5)
+
+# STEP 6
+step("STEP 6: OUTPUT COMPLETE")
+
+output = Panel(
+    Align.center(
+        "[bold green]MOCKUPS GENERATED[/]\n\n"
+        "[bold]Output:[/] ./output/abstract_painting/\n"
+        "[bold]Files:[/]  64 images + manifest\n"
+        "[bold]Time:[/]   8.4 seconds"
+    ),
+    title="[bold yellow]COMPLETE[/]",
+    border_style="green",
+    width=45
+)
+console.print(output)
+pause(2)
+
+# FOOTER
 console.print()
-console.print("[bold white]            github.com/jjshay/mockup-generator[/bold white]", justify="center")
-console.print()
-console.print("[dim]                       python demo.py[/dim]", justify="center")
+footer = Panel(
+    Align.center(
+        "[dim]Pillow + PhotoRoom API[/]\n"
+        "[bold cyan]github.com/jjshay/mockup-generator[/]"
+    ),
+    title="[dim]Mockup Generator v1.3[/]",
+    border_style="dim",
+    width=50
+)
+console.print(footer)
 pause(3)
