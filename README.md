@@ -107,6 +107,50 @@ python mockup_generator.py artwork.jpg --frame black_metal --frame gold_ornate
 
 ---
 
+## Architecture
+
+```mermaid
+flowchart TB
+    subgraph Input
+        A[Artwork Image] --> B[Image Loader]
+        C[Config File] --> D[Settings Parser]
+    end
+
+    subgraph Processing["Image Processing"]
+        B --> E[Perspective Transform]
+        D --> E
+        E --> F[Shadow Generator]
+        F --> G[Layer Compositor]
+    end
+
+    subgraph Frames["Frame Application"]
+        G --> H{Frame Style}
+        H -->|black_metal| I1[Black Frame]
+        H -->|white_wood| I2[White Frame]
+        H -->|gold_ornate| I3[Gold Frame]
+        H -->|natural_oak| I4[Oak Frame]
+    end
+
+    subgraph Scenes["Room Scenes"]
+        I1 & I2 & I3 & I4 --> J{Room Scene}
+        J -->|living_room| K1[Living Room]
+        J -->|office| K2[Office]
+        J -->|gallery| K3[Gallery]
+    end
+
+    subgraph Output
+        K1 & K2 & K3 --> L[Size Exporter]
+        L --> M[1200x1200 Square]
+        L --> N[1600x1200 4:3]
+        L --> O[1920x1080 16:9]
+    end
+
+    style A fill:#e1f5fe
+    style M fill:#c8e6c9
+    style N fill:#c8e6c9
+    style O fill:#c8e6c9
+```
+
 ## How It Works
 
 1. **Load artwork image**
