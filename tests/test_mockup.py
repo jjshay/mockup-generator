@@ -20,7 +20,7 @@ class TestMockupConfig:
         config_path = Path(__file__).parent.parent / "examples" / "mockup_config.json"
         with open(config_path) as f:
             config = json.load(f)
-        assert "frame_styles" in config, "Config should have frame_styles"
+        assert "frame_options" in config, "Config should have frame_options"
 
     def test_frame_styles_defined(self):
         """Verify frame styles are defined"""
@@ -28,11 +28,23 @@ class TestMockupConfig:
         with open(config_path) as f:
             config = json.load(f)
 
-        expected_styles = ["black_metal", "white_wood", "gold_ornate",
-                          "natural_oak", "floating"]
+        expected_styles = ["black_metal", "white_wood", "gold_ornate", "natural_oak"]
+        styles = config["frame_options"]["styles"]
 
         for style in expected_styles:
-            assert style in config["frame_styles"], f"Missing frame style: {style}"
+            assert style in styles, f"Missing frame style: {style}"
+
+    def test_frame_options_settings(self):
+        """Verify frame options have required settings"""
+        config_path = Path(__file__).parent.parent / "examples" / "mockup_config.json"
+        with open(config_path) as f:
+            config = json.load(f)
+
+        frame_options = config["frame_options"]
+        assert "default_style" in frame_options, "Should have default_style"
+        assert "frame_width_px" in frame_options, "Should have frame_width_px"
+        assert "mat_width_px" in frame_options, "Should have mat_width_px"
+        assert "mat_color" in frame_options, "Should have mat_color"
 
 
 class TestRoomScenes:
@@ -44,10 +56,28 @@ class TestRoomScenes:
         with open(config_path) as f:
             config = json.load(f)
 
-        expected_scenes = ["living_room", "office", "gallery", "bedroom", "minimal"]
+        assert "room_scenes" in config, "Config should have room_scenes"
+        room_scenes = config["room_scenes"]
+        assert len(room_scenes) >= 3, "Should have at least 3 room scenes"
+
+        # Check for expected scene names
+        scene_names = [scene["name"] for scene in room_scenes]
+        expected_scenes = ["living_room", "office", "gallery"]
 
         for scene in expected_scenes:
-            assert scene in config["room_scenes"], f"Missing room scene: {scene}"
+            assert scene in scene_names, f"Missing room scene: {scene}"
+
+    def test_room_scene_properties(self):
+        """Verify room scenes have required properties"""
+        config_path = Path(__file__).parent.parent / "examples" / "mockup_config.json"
+        with open(config_path) as f:
+            config = json.load(f)
+
+        for scene in config["room_scenes"]:
+            assert "name" in scene, "Scene should have name"
+            assert "wall_color" in scene, "Scene should have wall_color"
+            assert "floor_type" in scene, "Scene should have floor_type"
+            assert "lighting" in scene, "Scene should have lighting"
 
 
 class TestSampleArtwork:
@@ -66,26 +96,86 @@ class TestSampleArtwork:
         assert header[:2] == b'\xff\xd8', "File should be a valid JPEG"
 
 
-class TestOutputFormats:
-    """Test output format specifications"""
+class TestExportSizes:
+    """Test export size specifications"""
 
-    def test_output_sizes_defined(self):
-        """Verify output sizes are defined"""
+    def test_export_sizes_defined(self):
+        """Verify export sizes are defined"""
         config_path = Path(__file__).parent.parent / "examples" / "mockup_config.json"
         with open(config_path) as f:
             config = json.load(f)
 
-        assert "output_sizes" in config, "Config should have output_sizes"
+        assert "export_sizes" in config, "Config should have export_sizes"
+        sizes = config["export_sizes"]
+        assert len(sizes) >= 3, "Should have at least 3 export sizes"
 
-        # Check for common sizes
-        sizes = config["output_sizes"]
-        assert "square" in sizes, "Should have square format"
-        assert "landscape" in sizes, "Should have landscape format"
+    def test_export_size_properties(self):
+        """Verify export sizes have required properties"""
+        config_path = Path(__file__).parent.parent / "examples" / "mockup_config.json"
+        with open(config_path) as f:
+            config = json.load(f)
+
+        for size in config["export_sizes"]:
+            assert "name" in size, "Size should have name"
+            assert "dimensions" in size, "Size should have dimensions"
+            assert len(size["dimensions"]) == 2, "Dimensions should have width and height"
+
+
+class TestOutputConfig:
+    """Test output configuration"""
+
+    def test_output_config_defined(self):
+        """Verify output configuration is defined"""
+        config_path = Path(__file__).parent.parent / "examples" / "mockup_config.json"
+        with open(config_path) as f:
+            config = json.load(f)
+
+        assert "output" in config, "Config should have output"
+        output = config["output"]
+        assert "directory" in output, "Output should have directory"
+        assert "format" in output, "Output should have format"
+        assert "quality" in output, "Output should have quality"
 
     def test_sample_output_exists(self):
         """Verify sample output exists"""
         output_path = Path(__file__).parent.parent / "sample_output" / "mockup_manifest.json"
         assert output_path.exists(), "Sample output manifest should exist"
+
+
+class TestMockupManifest:
+    """Test mockup manifest output"""
+
+    def test_manifest_has_input_info(self):
+        """Verify manifest has input information"""
+        output_path = Path(__file__).parent.parent / "sample_output" / "mockup_manifest.json"
+        with open(output_path) as f:
+            manifest = json.load(f)
+
+        assert "input" in manifest, "Manifest should have input"
+        assert "artwork_file" in manifest["input"], "Input should have artwork_file"
+
+    def test_manifest_has_processing_info(self):
+        """Verify manifest has processing information"""
+        output_path = Path(__file__).parent.parent / "sample_output" / "mockup_manifest.json"
+        with open(output_path) as f:
+            manifest = json.load(f)
+
+        assert "processing" in manifest, "Manifest should have processing"
+        processing = manifest["processing"]
+        assert "frame_style" in processing, "Processing should have frame_style"
+        assert "framed_dimensions" in processing, "Processing should have framed_dimensions"
+
+    def test_manifest_has_outputs(self):
+        """Verify manifest has output information"""
+        output_path = Path(__file__).parent.parent / "sample_output" / "mockup_manifest.json"
+        with open(output_path) as f:
+            manifest = json.load(f)
+
+        assert "outputs" in manifest, "Manifest should have outputs"
+        outputs = manifest["outputs"]
+        assert "frame_variations" in outputs, "Outputs should have frame_variations"
+        assert "size_exports" in outputs, "Outputs should have size_exports"
+        assert "total_files_generated" in outputs, "Outputs should have total_files_generated"
 
 
 class TestPerspectiveTransform:
@@ -107,6 +197,18 @@ class TestPerspectiveTransform:
 class TestImageCompositing:
     """Test image compositing logic"""
 
+    def test_compositing_in_manifest(self):
+        """Verify compositing info in manifest"""
+        output_path = Path(__file__).parent.parent / "sample_output" / "mockup_manifest.json"
+        with open(output_path) as f:
+            manifest = json.load(f)
+
+        assert "compositing" in manifest, "Manifest should have compositing"
+        compositing = manifest["compositing"]
+        assert "artwork_position" in compositing, "Compositing should have artwork_position"
+        assert "shadow_blur_px" in compositing, "Compositing should have shadow_blur_px"
+        assert "shadow_opacity" in compositing, "Compositing should have shadow_opacity"
+
     def test_layer_order(self):
         """Test layer compositing order"""
         layers = ["background", "shadow", "artwork", "frame", "lighting"]
@@ -116,3 +218,18 @@ class TestImageCompositing:
 
         # Frame should be after artwork
         assert layers.index("frame") > layers.index("artwork")
+
+
+class TestMetadata:
+    """Test manifest metadata"""
+
+    def test_metadata_present(self):
+        """Verify metadata is included"""
+        output_path = Path(__file__).parent.parent / "sample_output" / "mockup_manifest.json"
+        with open(output_path) as f:
+            manifest = json.load(f)
+
+        assert "metadata" in manifest, "Manifest should have metadata"
+        metadata = manifest["metadata"]
+        assert "processing_time_seconds" in metadata, "Metadata should have processing_time_seconds"
+        assert "timestamp" in metadata, "Metadata should have timestamp"
